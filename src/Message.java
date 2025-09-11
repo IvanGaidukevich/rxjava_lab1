@@ -1,41 +1,62 @@
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Message {
-    private static long counter = 1;
+    private static long counter = 0;
 
     private long id;
-    private String sender;
     private String text;
-    private LocalDateTime date;
+    private LocalDateTime timestamp;
+    private MessageStatus status;
+    private Attachment attachment;
+    private List<LocalDateTime> editHistory;
+    private User sender;
+    private Chat room;
 
-
-    public Message(String sender, String text) {
-        this.id = counter;
-        this.sender = sender;
+    public Message(long id, String text, LocalDateTime timestamp, MessageStatus status, Attachment attachment, User sender, Chat room, List<LocalDateTime> editHistory) {
+        this.id = id;
         this.text = text;
-        this.date = LocalDateTime.now();
-        counter++;
+        this.timestamp = timestamp;
+        this.status = status;
+        this.attachment = attachment;
+        this.sender = sender;
+        this.room = room;
+        this.editHistory = editHistory;
     }
 
-    public String getSender() {
-        return sender;
+    public static long getCounter() {
+        return counter;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getText() {
         return text;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 
-    @Override
-    public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", sender='" + sender + '\'' +
-                ", text='" + text + '\'' +
-                ", date=" + date +
-                '}';
+    public MessageStatus getStatus() {
+        return status;
+    }
+
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public Chat getRoom() {
+        return room;
+    }
+
+    public List<LocalDateTime> getEditHistory() {
+        return editHistory;
     }
 }
