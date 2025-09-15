@@ -1,11 +1,11 @@
 public class User {
-    public static long counter = 0;
 
-    private long id;
-    private String name;
+    private static long counter = 0;
+    private final long id;
+    private final String name;
 
-    public User(long id, String name) {
-        this.id = id;
+    public User(String name) {
+        this.id = nextId();
         this.name = name;
     }
 
@@ -15,5 +15,9 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    private static long nextId() {
+        return ++counter;
     }
 }

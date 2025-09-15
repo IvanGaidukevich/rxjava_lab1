@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Message {
@@ -13,15 +14,15 @@ public class Message {
     private User sender;
     private Chat room;
 
-    public Message(long id, String text, LocalDateTime timestamp, MessageStatus status, Attachment attachment, User sender, Chat room, List<LocalDateTime> editHistory) {
-        this.id = id;
+    public Message(Chat room, User sender, String text, Attachment attachment) {
+        this.id = nextId();
+        this.timestamp = LocalDateTime.now();
+        this.editHistory = new ArrayList<>();
+        this.status = MessageStatus.SENT;
         this.text = text;
-        this.timestamp = timestamp;
-        this.status = status;
         this.attachment = attachment;
         this.sender = sender;
         this.room = room;
-        this.editHistory = editHistory;
     }
 
     public static long getCounter() {
@@ -58,5 +59,9 @@ public class Message {
 
     public List<LocalDateTime> getEditHistory() {
         return editHistory;
+    }
+
+    private static long nextId() {
+        return ++counter;
     }
 }

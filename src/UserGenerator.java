@@ -7,8 +7,7 @@ public class UserGenerator {
 
     public static User generate() {
         String name = names[ThreadLocalRandom.current().nextInt(names.length)];;
-        User.counter++;
-        return new User(User.counter, name);
+        return new User(name);
     }
 
     public static List<User> generateList(int amount){
